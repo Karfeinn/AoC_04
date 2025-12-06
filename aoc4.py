@@ -37,7 +37,7 @@ def is_forkliftable(input_data):
                 total.append((i,j))
     
     for couple in total:
-        input_data[couple[0]][couple[1]] = "x"
+        input_data[couple[0]][couple[1]] = 0
     return len(total)
 
 def get_binary_data(input_data):   
@@ -48,6 +48,13 @@ def get_binary_data(input_data):
             else: input_data[i][j] = int(1)
     return input_data
 
+def recursive():
+    data = get_binary_data(get_data())
+    last_mouved = is_forkliftable(data)
+    total = last_mouved
+    while last_mouved != 0:
+        last_mouved = is_forkliftable(data)
+        total += last_mouved
+    return total
 
-
-print(is_forkliftable(get_binary_data(get_data())))
+print(recursive())
